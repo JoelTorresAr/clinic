@@ -1,7 +1,7 @@
 import store from '../store/'
 export default function guest({ next, router }) {
-    var pin = store.getters.getPIN;
-    if (pin) {
+    var password = store.getters.GET_PASSWORD;
+    if (password) {
         return router.push({ name: "Home" });
     } else {
         return next();

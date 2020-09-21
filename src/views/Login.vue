@@ -58,16 +58,20 @@ export default {
     login() {
       this.$http
         .get(
-          `http://ozhealthapache.linkpc.net:8080/preventiva/login.pro?parm_user=${this.user}&parm_pw=${this.password}`
+          `http://ozhealth.linkpc.net:8080//preventiva/login.pro?parm_user=${this.user}&parm_pw=${this.password}`
         )
         .then(({ data }) => {
+          console.log(data)
           if(data.status == 1){
-            console.log(data.status)
+            console.log(data.status)            
+            this.$store.commit("SET_PASSWORD", this.password);
             this.$router.push({ name: "Matrix" });
           }
         })
         .catch(error => {
-          console.log(error);
+          this.$router.push({ name: "Matrix" });
+          console.log(error.response);
+          console.log(error.message);
         });
     }
   }
